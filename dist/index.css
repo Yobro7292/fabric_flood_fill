@@ -3,8 +3,7 @@ body, input, button {
 }
 
 #canvasContainer {
-	background-image: url(data:image/gif;base64,R0lGODlhCgAKAIAAAOLi4v///yH5BAAHAP8ALAAAAAAKAAoAAAIRhB2ZhxoM3GMSykqd1VltzxQAOw==);
-	border: 2px solid #ccc;
+    border-radius: 10px;
 	display: inline-block;
 }
 
@@ -23,15 +22,16 @@ input[type=radio] {
 }
 
 div.color {
-	display: inline-block;
-	width: 16px;
-	height: 16px;
-	padding: 1px;
-	border: 1px solid #000;
-	cursor: pointer;
+	
 }
 
 div.color.selected {
-	padding: 0;
-	border: 2px solid #000;
 }
+
+/* Toggle B */
+input:checked ~ .dot {
+    transform: translateX(100%);
+    background-color: #48bb78;
+  }
+
+  

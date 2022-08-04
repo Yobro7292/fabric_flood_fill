@@ -244,25 +244,14 @@ $(function () {
     fillTolerance = this.value // Set in global var
   })
 
-  $("input[name='mode']").on("click", function () {
-    floodFill(this.value == "floodFill")
-  })
-
+  var canvasWidth = $("#canvasContainer").width()
+  var canvasHeight = $("#canvasContainer").height()
   // Init Fabric Canvas:
   fcanvas = new fabric.Canvas("c", {
     backgroundColor: "#fff",
     enableRetinaScaling: false,
   })
-
-  // Add some demo-shapes:
-  //   new fabric.Image.fromURL("/img/download.png", (image) => {
-  //     image.set({
-  //       left: 50,
-  //       top: 10,
-  //     })
-  //     fcanvas.add(image)
-  //     fcanvas.renderAll()
-  //   })
+  fcanvas.setDimensions({ width: canvasWidth, height: canvasHeight })
   $("#addLine").click(() => {
     var line = new fabric.Line([50, 10, 200, 50], {
       stroke: "black",
@@ -270,6 +259,27 @@ $(function () {
     })
     fcanvas.add(line)
     fcanvas.renderAll()
+  })
+
+  $("#toggleB").click((e) => {
+    if (e.target.checked) {
+      $("#shapeContainer").hide()
+      $("#colorContainer").show()
+      $("#toggleRing").removeClass("border-gray-600")
+      $("#toggleRing").addClass("border-green-600")
+      $("#canvasContainer").removeClass("border-gray-600")
+      $("#canvasContainer").addClass("border-green-600")
+      $("#modeLabel").html("Fill Mode")
+    } else {
+      $("#colorContainer").hide()
+      $("#shapeContainer").show()
+      $("#toggleRing").removeClass("border-green-600")
+      $("#toggleRing").addClass("border-gray-600")
+      $("#canvasContainer").removeClass("border-green-600")
+      $("#canvasContainer").addClass("border-gray-600")
+      $("#modeLabel").html("Draw Mode")
+    }
+    floodFill(e.target.checked)
   })
 
   /* Images work very well too. Make sure they're CORS
@@ -281,9 +291,8 @@ $(function () {
       new fabric.Image(img, {
         left: 300,
         top: 100,
-        angle: 30,
       })
     )
   }
-  img.src = "./img/watermelon-duck-outline.png"
+  img.src = "../images/base.png"
 })
