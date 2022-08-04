@@ -212,13 +212,13 @@ function floodFill(enable) {
       }
       img.src = tmpCanvas.toDataURL("image/png")
 
-      fcanvas.add(
-        new fabric.Image(tmpCanvas, {
-          left: data.x,
-          top: data.y,
-          selectable: false,
-        })
-      )
+      // fcanvas.add(
+      //   new fabric.Image(tmpCanvas, {
+      //     left: data.x,
+      //     top: data.y,
+      //     selectable: false,
+      //   })
+      // )
     },
   })
 }
@@ -227,7 +227,7 @@ $(function () {
   // Init UI:
   $("#removeObject").on("click", function () {
     var obj = fcanvas.getActiveObject()
-    fcanvas.remove(obj)
+    if (obj) fcanvas.remove(obj)
   })
 
   $("div.color")
